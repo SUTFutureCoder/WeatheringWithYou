@@ -1,2 +1,5 @@
-# WeathingWithYou
+# WeatheringWithYou
 一款基于谷歌地形的天气之子存在状态下东京都被淹情况预测地图
+
+有些烧钱的沙雕爬虫练习
+
