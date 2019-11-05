@@ -9,7 +9,15 @@
 
 # 参考文档
 [GoogleMapPlatform](https://developers.google.com/maps/documentation/elevation/start)  
-[东京都geojson](https://niaesvic.dc.affrc.go.jp/dataset/h27-census-polygon/resource/5b8064bf-e49f-4fb4-a017-f76e75b77832)
+
+防止被查水表，采用东京的数据。意外发现日本数据开放度非常好，其他研究也可以直接下载数据资源    
+[东京都细致geojson](https://niaesvic.dc.affrc.go.jp/dataset/h27-census-polygon/resource/5b8064bf-e49f-4fb4-a017-f76e75b77832)  
+[日本国土数值情报](http://nlftp.mlit.go.jp/ksj/index.html)  
+因上面geojson过于复杂，直接使用维基百科的边界坐标  
+[维基百科](https://zh.wikipedia.org/wiki/Template:Location_map_Tokyo_city)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;35.821  
+139.555	←↕→	139.923  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;35.513
 
 # GoogleMapPlatform样例返回
 样例选取为东京大学坐标点(35.71286391,139.7618964)
