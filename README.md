@@ -73,7 +73,22 @@ util.tile_latlon.TiteLation.tile2latlon(29108, 12908, 15)
 [维基百科](https://zh.wikipedia.org/wiki/Template:Location_map_Tokyo_city)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;35.821  
 139.555	←↕→	139.923  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;35.513
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;35.513  
+
+上左下右的顺序转换
+  
+```python
+import util.tile_latlon
+util.tile_latlon.TiteLation.latlon2tile(139.555, 35.821, 15)
+util.tile_latlon.TiteLation.latlon2tile(139.555, 35.513, 15)
+util.tile_latlon.TiteLation.latlon2tile(139.923, 35.513, 15)
+util.tile_latlon.TiteLation.latlon2tile(139.923, 35.821, 15)
+```
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[12887, 29086]   
+[12922, 29086]	←↕→	[12887, 29120]  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[12922, 29120]   
+
 
 
 ---
