@@ -79,17 +79,27 @@ util.tile_latlon.TiteLation.tile2latlon(29108, 12908, 15)
   
 ```python
 import util.tile_latlon
-util.tile_latlon.TiteLation.latlon2tile(139.555, 35.821, 15)
-util.tile_latlon.TiteLation.latlon2tile(139.555, 35.513, 15)
-util.tile_latlon.TiteLation.latlon2tile(139.923, 35.513, 15)
-util.tile_latlon.TiteLation.latlon2tile(139.923, 35.821, 15)
+util.tile_latlon.TiteLation.latlon2tile(139.555, 35.821, 15) # 左上
+util.tile_latlon.TiteLation.latlon2tile(139.555, 35.513, 15) # 左下
+util.tile_latlon.TiteLation.latlon2tile(139.923, 35.513, 15) # 右下
+util.tile_latlon.TiteLation.latlon2tile(139.923, 35.821, 15) # 右上
 ```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[12887, 29086]   
 [12922, 29086]	←↕→	[12887, 29120]  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[12922, 29120]   
 
+13 进行分块并行化处理，对tile进行分割  
+左右35块  
+上下34块  
+共计1190块  
+每块256 * 256个点  
+共计77,987,840个点  
+这要是去谷歌调用接口……多少钱  
 
+14 爬取计划  
+如果1190块去爬，单线程一天应该就可以了    
+接下来就计划如何展示  
 
 ---
 
