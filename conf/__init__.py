@@ -3,17 +3,25 @@ from conf.key import Key
 
 class Conf:
   googleMapKey = ""
-  opensearchAccessKey = ""
+  opensearchAccessKeyId = ""
+  opensearchAccessKeySecret = ""
 
   googleMapElevationApi = "https://maps.googleapis.com/maps/api/elevation/json?locations={},{}&key={}"
   opensearchAppId = "WatheringWithYou"
   opensearchAPI = "http://opensearch-cn-beijing.aliyuncs.com"
+  opensearchTable = "elevation"
 
   cyberJapanDataDem5aAPI = "https://cyberjapandata.gsi.go.jp/xyz/dem5a/15/{}/{}.txt"
 
+  # 缩放级数
   zoom = 15
+  # 数据分片
   shard = 256
+
+  # 国家代码
+  country_jpn = "810"
 
   def __init__(self):
     self.googleMapKey = Key.googleMapKey
-    self.opensearchAccessKey = Key.opensearchAccessKey
+    self.opensearchAccessKeyId = Key.opensearchAccessKeyId
+    self.opensearchAccessKeySecret = Key.opensearchAccessKeySecret

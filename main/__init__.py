@@ -17,5 +17,6 @@ class Main:
         parsed_cyber_data = obj_cyber.get_data_by_tile(x, y)
         # 入库
         obj_opensearch.insert(parsed_cyber_data)
+        break
 
     return
