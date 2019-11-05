@@ -18,7 +18,8 @@
 [精度](https://maps.gsi.go.jp/help/pdf/demapi.pdf)
 
 # 爬取前期验证方案及准备
-1 在GoogleMap中随便选一个点，复制坐标例：(35.658497 139.768407)并保持页面  
+1 在GoogleMap中随便选一个点，复制坐标例：(35.658497 139.768407)并保持页面
+  
 2 调用  
 ```python
 import util.tile_latlon
@@ -27,18 +28,23 @@ util.tile_latlon.TiteLation.latlon2tile(139.768407, 35.658497, 15)
 得到
 [12905, 29106]
 
-3 打开[地理院地图](http://maps.gsi.go.jp/)，调整比例尺到300m，打开chrome控制台network选项卡。在上方输入 35.658497 139.768407。    
-4 可见地图正中央为Google选点位置，且在network选项卡中出现了[12905, 29106] png网络请求  
-5 进行[抓取即可](https://cyberjapandata.gsi.go.jp/xyz/dem5a/15/29106/12905.txt)  
-6 抓取注意需要计算两个tile之间的距离，除以256，算出每个坐标点的位置  
+3 打开[地理院地图](http://maps.gsi.go.jp/)，调整比例尺到300m，打开chrome控制台network选项卡。在上方输入 35.658497 139.768407。
+    
+4 可见地图正中央为Google选点位置，且在network选项卡中出现了[12905, 29106] png网络请求
+  
+5 进行[抓取即可](https://cyberjapandata.gsi.go.jp/xyz/dem5a/15/29106/12905.txt)
+  
+6 抓取注意需要计算两个tile之间的距离，除以256，算出每个坐标点的位置
+  
 7 反向校验，调用  
 ```python
 import util.tile_latlon
 util.tile_latlon.TiteLation.tile2latlon(29106, 12905, 15)
 ```
 得到    
-[139.76806640625, 35.666222341034754]  
-8 再次邻接校验，调用其他三个角
+[139.76806640625, 35.666222341034754]
+  
+8 再次邻接校验，调用其他三个角  
 ```python
 import util.tile_latlon
 util.tile_latlon.TiteLation.tile2latlon(29106, 12906, 15)
@@ -48,7 +54,8 @@ util.tile_latlon.TiteLation.tile2latlon(29107, 12906, 15)
 得到   
 [139.76806640625, 35.65729624809627]  
 [139.779052734375, 35.666222341034754]  
-[139.779052734375, 35.65729624809627]  
+[139.779052734375, 35.65729624809627]
+  
 9 再次邻接校验，再扩展调用一个点  
 ```python
 import util.tile_latlon
@@ -61,16 +68,19 @@ util.tile_latlon.TiteLation.tile2latlon(29108, 12908, 15)
 [139.76806640625, 35.64836915737426]  
 [139.7900390625, 35.666222341034754]  
 [139.7900390625, 35.64836915737426]  
-[139.7900390625, 35.63944106897392] 
+[139.7900390625, 35.63944106897392]   
+
 10 得到差值
 [0.010986328125, -0.008926092938484、-0.00892709072201、-0.00892808840034]  
-姑且认为是平均分布Y方向，X有些许误差    
+姑且认为是平均分布Y方向，X有些许误差   
+ 
 11 地图确认相邻节点的距离  
 通过谷歌地图测距，可得  
-[35.6619836,139.7649815] 到 [35.6618592,139.7627311] 约为1千米  
-如每个区块256个点，则每个点能表示约为4米，分辨率dem5a为5米        
-12 根据维基数据获取四个角的tile坐标，再根据坐标反查相邻tile的经纬度，再除256即可算出每个点对应的海拔    
-[维基百科](https://zh.wikipedia.org/wiki/Template:Location_map_Tokyo_city)  
+[35.6619836,139.7649815] 到 [35.6618592,139.7627311] 约为1千米    
+如每个区块256个点，则每个点能表示约为4米，分辨率dem5a为5米  
+        
+12 根据维基数据获取四个角的tile坐标，再根据坐标反查相邻tile的经纬度，再除256即可算出每个点对应的海拔      
+[维基百科](https://zh.wikipedia.org/wiki/Template:Location_map_Tokyo_city)    
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;35.821  
 139.555	←↕→	139.923  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;35.513  
