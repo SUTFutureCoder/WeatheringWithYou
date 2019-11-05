@@ -118,7 +118,7 @@ util.tile_latlon.TiteLation.latlon2tile(139.923, 35.821, 15) # 右上
 
 # 依赖
 ```bash
-pip3 install ali-opensearch
+pip3 install git+https://github.com/aliyun-beta/aliyun-opensearch-python-sdk.git@master
 ```
 
 ---
