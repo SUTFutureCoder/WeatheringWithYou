@@ -110,24 +110,24 @@ util.tile_latlon.TiteLation.latlon2tile(139.923, 35.821, 15) # 右上
 14 爬取计划  
 如果1190块去爬，单线程一天应该就可以了  
 需要注意的是，无海拔情况为e，全图无海拔则返回404不存在  
-[边缘样例](http://cyberjapandata.gsi.go.jp/xyz/dem5a/15/29111/12913.txt)        
+[边缘样例](http://cyberjapandata.gsi.go.jp/xyz/dem5a/15/29111/12913.txt)          
 接下来就计划如何展示  
 
 15 如果有时间再接API查旅馆位置  
 
 ---
 
-# 以下为废弃笔记
-虽然Google服务精度较高，但Google服务太贵了。还需要租境外服务器……  
-精确到毫米就够了，使用国土地理院爬出来的点就能算出省了多少钱。
+# 以下为废弃笔记  
+虽然Google服务海拔小数点较高，但Google服务太贵了。还需要租境外服务器……    
+精确到毫米就够了，另外国土地理院的数据分辨率特别高，3m(1000/256)远高于google map的9m，使用国土地理院爬出来的点就能算出省了多少钱。  
 
 
 # 依赖服务
-* GoogleMapPlatform Elevation API（烧钱*1）
-* 阿里云开放搜索 OpenSearch （烧钱*2）
+* GoogleMapPlatform Elevation API（烧钱*1）  
+* 阿里云开放搜索 OpenSearch （烧钱*2）  
 
-# 参考文档
-[GoogleMapPlatform](https://developers.google.com/maps/documentation/elevation/start)  
+# 参考文档  
+[GoogleMapPlatform](https://developers.google.com/maps/documentation/elevation/start)    
 
 防止被查水表，采用东京的数据。意外发现日本数据开放度非常好，其他研究也可以直接下载数据资源    
 [东京都细致geojson](https://niaesvic.dc.affrc.go.jp/dataset/h27-census-polygon/resource/5b8064bf-e49f-4fb4-a017-f76e75b77832)  
