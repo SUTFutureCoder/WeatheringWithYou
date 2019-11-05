@@ -3,6 +3,22 @@
 
 有些烧钱的沙雕爬虫练习
 
+# 依赖服务V2
+* 国土地理院標高タイル
+* 阿里云开放搜索 OpenSearch （烧钱）
+
+# 文档
+[標高タイルの詳細仕様](https://maps.gsi.go.jp/development/demtile.html)  
+[dem5a地图样例](https://cyberjapandata.gsi.go.jp/xyz/dem5a_png/15/29115/12904.png)  
+[dem5a接口样例](https://cyberjapandata.gsi.go.jp/xyz/dem5a/15/29106/12904.txt)  
+[タイル座標⇔緯度経度の変換](https://note.sngklab.jp/?p=72)
+
+---
+
+# 以下为废弃笔记
+虽然Google服务精度较高，但Google服务太贵了
+
+
 # 依赖服务
 * GoogleMapPlatform Elevation API（烧钱*1）
 * 阿里云开放搜索 OpenSearch （烧钱*2）
@@ -18,6 +34,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;35.821  
 139.555	←↕→	139.923  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;35.513
+[国土数值情报转换](https://qiita.com/sw1227/items/a17d424ce8d0cd2302e6)
 
 # GoogleMapPlatform样例返回
 样例选取为东京大学坐标点(35.71286391,139.7618964)
@@ -41,15 +58,11 @@
 # 处理细节
 ## 数据基础处理
 
-1 首先划定爬取范围，爬取点使用射线法判断  
+1 首先划定爬取范围  
 2 将API获得数据打平，扔进opensearch中进行存储用于检索  
 3 根据返回的resolution进行下一轮爬取  
 4 怎么预测或展示还没想好……大概需要考虑降雨量、排水能力和旅馆分布？
 
-## 划定范围
-首先划定地图围栏，竟可能精准
-左上：这里海拔53，所以可以在此处避难
-35.816845, 139.554119
-左下：
+总之先出Demo跑起来再说
 
 
