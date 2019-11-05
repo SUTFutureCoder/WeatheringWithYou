@@ -23,3 +23,6 @@ print(util.tile_latlon.TiteLation.latlon2tile(139.555, 35.821, 15))
 print(util.tile_latlon.TiteLation.latlon2tile(139.555, 35.513, 15))
 print(util.tile_latlon.TiteLation.latlon2tile(139.923, 35.513, 15))
 print(util.tile_latlon.TiteLation.latlon2tile(139.923, 35.821, 15))
+
+
+print(util.tile_latlon.TiteLation.latlon2tile(139.827874, 35.592885, 15))
