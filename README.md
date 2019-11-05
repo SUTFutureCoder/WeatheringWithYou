@@ -17,7 +17,7 @@
 [中文版原理](https://my.oschina.net/u/2289608/blog/750698)  
 [精度](https://maps.gsi.go.jp/help/pdf/demapi.pdf)
 
-# 验证方法
+# 爬取前期验证方案及准备
 1 在GoogleMap中随便选一个点，复制坐标例：(35.658497 139.768407)并保持页面  
 2 调用  
 ```python
