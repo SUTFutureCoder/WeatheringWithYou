@@ -116,6 +116,11 @@ util.tile_latlon.TiteLation.latlon2tile(139.923, 35.821, 15) # 右上
 
 15 如果有时间再接API查旅馆位置  
 
+# 依赖
+```bash
+pip3 install ali-opensearch
+```
+
 ---
 
 # 以下为废弃笔记  
