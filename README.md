@@ -7,6 +7,19 @@
 * 国土地理院標高タイル
 * 阿里云开放搜索 OpenSearch （烧钱）
 
+# 启动方式
+```bash
+python3 main.py
+```
+
+# 当前进度
+* 立项 [20191105 22:58:24]
+* 爬虫调试 [20191105 21:24:46]
+* 存储调试 [20191106 00:48:23]
+* 爬取 <-----------------------
+* 界面化
+
+
 # 文档
 [標高タイルの詳細仕様](https://maps.gsi.go.jp/development/demtile.html)  
 [dem5a地图样例](https://cyberjapandata.gsi.go.jp/xyz/dem5a_png/15/29115/12904.png)  
