@@ -52,6 +52,8 @@ class CyberJapanData:
         continue
       j = 0
       for point in text_line.split(","):
+        if point == "e":
+          point = -1
         latlon_list[i][j] = point
         j += 1
       i += 1

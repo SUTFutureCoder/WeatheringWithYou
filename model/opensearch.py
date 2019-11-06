@@ -1,6 +1,5 @@
 import time
 import math
-import json
 import conf
 from opensearch import Client
 from opensearch import IndexDoc
@@ -18,9 +17,14 @@ class OpenSearch:
     # 解析数据
     parsed_items = self.parse(parsed_cyber_data)
 
-    for i in parsed_items:
+    j = 0
+    for item in parsed_items:
       # 插入表
-      data_ret = self.index_doc.add(i, self.obj_conf.opensearchTable)
+      print(item)
+      data_ret = self.index_doc.add(item, self.obj_conf.opensearchTable)
+      j += 1
+      if j == 100:
+        exit()
       print(data_ret)
     return
 
@@ -28,17 +32,13 @@ class OpenSearch:
     parsed_items = []
     for i in range(0, self.obj_conf.shard):
       for j in range(0, self.obj_conf.shard):
-        # 经纬度作为id 810
-        id = self.get_id(self.obj_conf.country_jpn, parsed_cyber_data[i][j]["lon"], parsed_cyber_data[i][j]["lat"])
+        loc = str(parsed_cyber_data[i][j]["lon"]) + " " + str(parsed_cyber_data[i][j]["lat"])
         parsed_items.append({
-              "id": id,
-              "loc": str(parsed_cyber_data[i][j]["lon"]) + " " + str(parsed_cyber_data[i][j]["lat"]),
+              "id": loc,
+              "loc": loc,
               "loc_lat": parsed_cyber_data[i][j]["lat"],
               "loc_lng": parsed_cyber_data[i][j]["lon"],
               "elevation": parsed_cyber_data[i][j]["elevation"],
               "create_time": int(round(time.time() * 1000)),
           })
     return parsed_items
-
-  def get_id(self, country, lon, lat):
-    return country + str(math.fabs(lon * (10 ** 8)))[0:7] + str(math.fabs(lat * (10 ** 8)))[0:7]

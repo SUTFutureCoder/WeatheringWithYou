@@ -7,7 +7,7 @@ class Conf:
   opensearchAccessKeySecret = ""
 
   googleMapElevationApi = "https://maps.googleapis.com/maps/api/elevation/json?locations={},{}&key={}"
-  opensearchAppId = "WatheringWithYou"
+  opensearchAppId = "WatheringWithYou_TEST"
   opensearchAPI = "http://opensearch-cn-beijing.aliyuncs.com"
   opensearchTable = "elevation"
 
@@ -17,9 +17,6 @@ class Conf:
   zoom = 15
   # 数据分片
   shard = 256
-
-  # 国家代码
-  country_jpn = "810"
 
   def __init__(self):
     self.googleMapKey = Key.googleMapKey
