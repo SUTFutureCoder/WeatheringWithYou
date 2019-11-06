@@ -8,7 +8,7 @@ class Conf:
 
   googleMapElevationApi = "https://maps.googleapis.com/maps/api/elevation/json?locations={},{}&key={}"
   opensearchAppId = "WatheringWithYou"
-  opensearchAPI = "http://opensearch-cn-beijing.aliyuncs.com"
+  opensearchAPI = "http://intranet.opensearch-cn-qingdao.aliyuncs.com"
   opensearchTable = "elevation"
 
   cyberJapanDataDem5aAPI = "https://cyberjapandata.gsi.go.jp/xyz/dem5a/15/{}/{}.txt"
