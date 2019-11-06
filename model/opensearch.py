@@ -17,14 +17,9 @@ class OpenSearch:
     # 解析数据
     parsed_items = self.parse(parsed_cyber_data)
 
-    j = 0
     for item in parsed_items:
       # 插入表
-      print(item)
       data_ret = self.index_doc.add(item, self.obj_conf.opensearchTable)
-      j += 1
-      if j == 100:
-        exit()
       print(data_ret)
     return
 
