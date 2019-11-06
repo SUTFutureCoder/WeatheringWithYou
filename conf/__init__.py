@@ -7,7 +7,7 @@ class Conf:
   opensearchAccessKeySecret = ""
 
   googleMapElevationApi = "https://maps.googleapis.com/maps/api/elevation/json?locations={},{}&key={}"
-  opensearchAppId = "WatheringWithYou_TEST"
+  opensearchAppId = "WatheringWithYou"
   opensearchAPI = "http://opensearch-cn-beijing.aliyuncs.com"
   opensearchTable = "elevation"
 
