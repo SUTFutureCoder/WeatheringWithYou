@@ -31,9 +31,6 @@ class OpenSearch:
         parsed_items.append({
               "id": loc,
               "loc": loc,
-              "loc_lat": parsed_cyber_data[i][j]["lat"],
-              "loc_lng": parsed_cyber_data[i][j]["lon"],
               "elevation": parsed_cyber_data[i][j]["elevation"],
-              "create_time": int(round(time.time() * 1000)),
           })
     return parsed_items
