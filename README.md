@@ -21,15 +21,15 @@ python3 main.py
 * 界面化
 
 # 性能
-35线程 
+35线程   
 外网 175文档/s  
-青岛同城机房内网  1333文档/s   
-阿里云 1 vCPU 2 GiB (I/O优化)   
-ecs.n4.small   1Mbps  
+青岛同城机房内网  1363文档/s   
+阿里云 1 vCPU 2 GiB (I/O优化) ecs.n4.small  
 单核CPU 77.2%    
 2G 内存 81.7 1.5G  
 内网带宽 2Mbps    
-root     22666 45.4 77.7 2578776 1465504 ?     Sl   14:34   1:25 python3 main.py  
+root     22666 45.4 77.7 2578776 1465504 ?     Sl   14:34   1:25 python3 main.py    
+预计16小时爬完东京77,987,840个采样点  
 
 # 文档
 [標高タイルの詳細仕様](https://maps.gsi.go.jp/development/demtile.html)  
