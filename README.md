@@ -21,12 +21,14 @@ python3 main.py
 * 界面化
 
 # 性能
-35线程 175文档/s 10169文档/分钟  
-阿里云 1 vCPU 2 GiB (I/O优化)  
+35线程 
+外网 175文档/s  
+青岛同城机房内网  1333文档/s   
+阿里云 1 vCPU 2 GiB (I/O优化)   
 ecs.n4.small   1Mbps  
-单核CPU 45.4%    
-2G 内存  1.5G  
-1MBPS 网络跑满   
+单核CPU 77.2%    
+2G 内存 81.7 1.5G  
+内网带宽 2Mbps    
 root     22666 45.4 77.7 2578776 1465504 ?     Sl   14:34   1:25 python3 main.py  
 
 # 文档
