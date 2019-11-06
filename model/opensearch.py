@@ -19,6 +19,7 @@ class OpenSearch:
 
     for item in parsed_items:
       # 插入表
+      print(item)
       self.index_doc.add(item, self.obj_conf.opensearchTable)
     return
 
@@ -30,6 +31,6 @@ class OpenSearch:
         parsed_items.append({
               "id": loc,
               "loc": loc,
-              "elevation": parsed_cyber_data[i][j]["elevation"],
+              "elevation": int(float(parsed_cyber_data[i][j]["elevation"]) * 100),
           })
     return parsed_items
