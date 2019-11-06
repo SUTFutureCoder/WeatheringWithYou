@@ -19,8 +19,7 @@ class OpenSearch:
 
     for item in parsed_items:
       # 插入表
-      data_ret = self.index_doc.add(item, self.obj_conf.opensearchTable)
-      print(data_ret)
+      self.index_doc.add(item, self.obj_conf.opensearchTable)
     return
 
   def parse(self, parsed_cyber_data):
