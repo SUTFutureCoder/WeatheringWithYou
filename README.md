@@ -19,18 +19,27 @@ python3 main.py
 * 存储调试 [20191106 00:48:23]
 * 多线程优化 [20191106 13:52:56]
 * 实际爬取 [20191106 15:12:00 ~ ] <-----------------------
+* 864线程爬取 [20191109 15:12:00 ~ ] <-----------------------
 * 界面化
 
 # 性能
 35线程   
-外网 175文档/s  
-青岛同城机房内网  1363文档/s   
+外网 175文档/10s  
+青岛同城机房内网  1363文档/10s   
 阿里云 1 vCPU 2 GiB (I/O优化) ecs.n4.small  
 单核CPU 77.2%    
 2G 内存 81.7 1.5G  
 内网带宽 2Mbps    
 root     22666 45.4 77.7 2578776 1465504 ?     Sl   14:34   1:25 python3 main.py    
-预计16小时爬完东京77,987,840个采样点  
+
+864线程（然而并没有卵用，速度被开放搜索锁死了）   
+处理速度  1363文档/10s   
+阿里云 12 vCPU 96 GiB (I/O优化) 50Mbps (峰值)   
+CPU 113.3%    
+内存 35.2 33.2g
+内网带宽 2Mbps    
+root      20   0   44.8g  33.5g   6184 S 121.6 35.5  11:40.85 python3  
+
 
 # 文档
 [標高タイルの詳細仕様](https://maps.gsi.go.jp/development/demtile.html)  
@@ -139,7 +148,22 @@ util.tile_latlon.TiteLation.latlon2tile(139.923, 35.821, 15) # 右上
 [边缘样例](http://cyberjapandata.gsi.go.jp/xyz/dem5a/15/29111/12913.txt)          
 接下来就计划如何展示  
 
-15 如果有时间再接API查旅馆位置  
+15 然而发现5G的存储差点就能把7700万个点存进去，所以配合谷歌地图api  
+先把查出来，输出到文件中  
+```
+from util.tile_latlon import *
+curr_latlon = TiteLation.tile2latlon(x, y, obj_conf.zoom)
+next_latlon = TiteLation.tile2latlon(x + 1, y + 1, obj_conf.zoom)
+if False is obj_googlemap.check_compound_code(curr_latlon['lat'], curr_latlon['lon'], 'Tokyo, Japan') \
+  and False is obj_googlemap.check_compound_code(next_latlon['lat'], next_latlon['lon'], 'Tokyo, Japan'):
+  continue
+  # 输出东京范围内的数据
+print(self.x, y)
+continue
+```  
+运算结果已输出至./tokyo_tile文件  
+因此只需要处理53,739,520个点即可    
+另外多线程模型完全放开(820线程)后，阿里云购买一个按小时付费的大型实例，目测效果拔群  
 
 # 依赖
 ```bash

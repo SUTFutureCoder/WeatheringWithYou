@@ -7,7 +7,12 @@ class Main:
 
   def Run(self):
     # 切东京范围
+    tile_file = open('./tokyo_tile')
+    tile_list = []
+    for line in tile_file.readlines():
+      tile_list.append(line)
+
     for x in range(29086, 29120 + 1):
-      obj_thread = multi_thread(x)
-      obj_thread.start()
+        obj_thread = multi_thread(x, tile_list)
+        obj_thread.start()
     return

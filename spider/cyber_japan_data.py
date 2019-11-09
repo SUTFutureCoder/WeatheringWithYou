@@ -1,5 +1,6 @@
 import conf
 import requests
+from requests.adapters import HTTPAdapter
 from util.tile_latlon import *
 
 class CyberJapanData:
@@ -9,7 +10,9 @@ class CyberJapanData:
 
   def get_data_by_tile(self, x, y):
     # 爬取数据
-    req = requests.get(self.obj_conf.cyberJapanDataDem5aAPI.format(x, y))
+    s = requests.Session()
+    s.mount('https://', HTTPAdapter(max_retries=10))
+    req = s.get(self.obj_conf.cyberJapanDataDem5aAPI.format(x, y), timeout=(10, 60))
     if req.status_code != 200:
       print("REQ x={} y={} FAILED", x, y)
       return False

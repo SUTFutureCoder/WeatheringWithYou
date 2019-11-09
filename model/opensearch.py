@@ -19,7 +19,6 @@ class OpenSearch:
 
     for item in parsed_items:
       # 插入表
-      print(item)
       self.index_doc.add(item, self.obj_conf.opensearchTable)
     return
 
