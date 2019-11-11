@@ -1,3 +1,4 @@
 conf/key.py
 .idea/*
 */__pycache__/*
+node_modules/
