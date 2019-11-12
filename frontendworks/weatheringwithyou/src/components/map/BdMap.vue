@@ -42,8 +42,8 @@
             initPoints() {
                 if (!this.map) return false
                 // STEP1 直接发送给后端四角数据
-                // window.console.log(this.map.getBounds())
-
+                window.console.log(this.map.getBounds())
+                window.console.log(this.map.getDistance(this.map.getBounds().getSouthWest(), this.map.getBounds().getNorthEast()))
                 // STEP2 对返回结果进行聚合
 
             }
