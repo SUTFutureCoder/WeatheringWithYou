@@ -8,7 +8,7 @@
                     @moveend="initPoints"
                     @zoomend="initPoints"
         >
-            <bml-heatmap :data="heatpoint" :max="100" :radius="50">
+            <bml-heatmap :data="heatpoint" :max="100" :radius="20">
             </bml-heatmap>
         </baidu-map>
     </div>
@@ -51,7 +51,7 @@
                     .catch(error => window.console.log(error))
             },
             addToHeatPoint(ret) {
-                // this.heatpoint = []
+                this.heatpoint = []
                 for (let i in ret) {
                     let tmpPoint = {
                         lng: ret[i].Lng,
