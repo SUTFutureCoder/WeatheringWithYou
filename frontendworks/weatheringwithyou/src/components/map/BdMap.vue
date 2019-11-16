@@ -8,7 +8,7 @@
                     @moveend="initPoints"
                     @zoomend="initPoints"
         >
-            <bml-heatmap :data="heatpoint" :max="100" :radius="5">
+            <bml-heatmap :data="heatpoint" :max="100" :radius="50">
             </bml-heatmap>
         </baidu-map>
     </div>
@@ -16,6 +16,7 @@
 
 <script>
     import {BmlHeatmap} from 'vue-baidu-map'
+    import axios from 'axios'
     export default {
         data() {
             return {
@@ -26,10 +27,8 @@
                 zoom: 14,
                 BMap: false,
                 map: false,
+                showheatpoint: true,
                 heatpoint: [
-                    {lng: 139.752885, lat: 35.685140, count: 50},
-                    {lng: 139.754012, lat: 35.685201, count: 51},
-                    {lng: 139.752542, lat: 35.683511, count: 15}
                 ]
             }
         },
@@ -41,11 +40,27 @@
             },
             initPoints() {
                 if (!this.map) return false
-                // STEP1 直接发送给后端四角数据
-                window.console.log(this.map.getBounds())
-                window.console.log(this.map.getDistance(this.map.getBounds().getSouthWest(), this.map.getBounds().getNorthEast()))
-                // STEP2 对返回结果进行聚合
-
+                axios
+                    .post('http://127.0.0.1:3000/analyse', {
+                        sw_lng: this.map.getBounds().getSouthWest().lng,
+                        sw_lat: this.map.getBounds().getSouthWest().lat,
+                        ne_lng: this.map.getBounds().getNorthEast().lng,
+                        ne_lat: this.map.getBounds().getNorthEast().lat,
+                    })
+                    .then(response => (this.addToHeatPoint(response.data.result)))
+                    .catch(error => window.console.log(error))
+            },
+            addToHeatPoint(ret) {
+                // this.heatpoint = []
+                for (let i in ret) {
+                    let tmpPoint = {
+                        lng: ret[i].Lng,
+                        lat: ret[i].Lat,
+                        count: ret[i].Elevation / 100,
+                    }
+                    this.heatpoint.push(tmpPoint)
+                }
+                window.console.log(this.heatpoint)
             }
         },
         components: {
