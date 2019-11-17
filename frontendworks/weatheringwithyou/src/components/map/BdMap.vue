@@ -32,6 +32,9 @@
                 ]
             }
         },
+        mounted() {
+            window.console.log(this.$router)
+        },
         methods: {
             onready({BMap, map}) {
                 this.BMap = BMap
@@ -40,12 +43,23 @@
             },
             initPoints() {
                 if (!this.map) return false
+                let wslice = parseInt(this.$route.query.wslice, 10)
+                let hslice = parseInt(this.$route.query.hslice, 10)
+                if (!wslice) {
+                    // 默认为12
+                    wslice = 12
+                }
+                if (!hslice) {
+                    hslice = 9
+                }
                 axios
                     .post('http://127.0.0.1:3000/analyse', {
                         sw_lng: this.map.getBounds().getSouthWest().lng,
                         sw_lat: this.map.getBounds().getSouthWest().lat,
                         ne_lng: this.map.getBounds().getNorthEast().lng,
                         ne_lat: this.map.getBounds().getNorthEast().lat,
+                        wslice: wslice,
+                        hslice: hslice,
                     })
                     .then(response => (this.addToHeatPoint(response.data.result)))
                     .catch(error => window.console.log(error))
