@@ -2,16 +2,19 @@
   <div id="app">
     <div id="content">
       <bd-map></bd-map>
+      <controller></controller>
     </div>
   </div>
 </template>
 
 <script>
 import BdMap from "./components/map/BdMap"
+import Controller from "./components/control/Controller"
 export default {
   name: 'app',
   components: {
     BdMap,
+    Controller,
   }
 }
 </script>

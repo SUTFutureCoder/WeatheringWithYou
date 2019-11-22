@@ -4,6 +4,8 @@ import VueRouter from 'vue-router';
 import App from './App.vue'
 import BaiduMap from 'vue-baidu-map'
 import Key from "./constants/Key"
+import MuseUI from 'muse-ui';
+import 'muse-ui/dist/muse-ui.css';
 
 
 Vue.config.productionTip = false
@@ -12,6 +14,7 @@ Vue.use(VueRouter)
 Vue.use(BaiduMap, {
   ak: Key.BaiduMapAK
 })
+Vue.use(MuseUI)
 
 const router =  new VueRouter({
 })
