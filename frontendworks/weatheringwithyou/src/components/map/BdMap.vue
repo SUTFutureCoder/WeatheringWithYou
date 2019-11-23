@@ -105,6 +105,9 @@
                         for (let heatpointkey in vue.heatpoint) {
                             vue.heatpoint[heatpointkey].count -=  (vue.currentRain / 100)
                         }
+                        // 获取时间
+                        EventBus.$emit("timechange", Date.parse( new Date()) + 1000 * 60 * 60 * vue.currentRainTimes)
+
                     }, 300)
                 })
                 EventBus.$on("stop_analyse", function () {
