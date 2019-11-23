@@ -8,6 +8,7 @@
                     @moveend="initPoints"
                     @zoomend="initPoints"
         >
+            <bm-point-collection :points="points" size="BMAP_POINT_SIZE_BIG" color="red"></bm-point-collection>
             <bml-heatmap :data="heatpoint" :max="100" :radius="radius">
             </bml-heatmap>
         </baidu-map>
@@ -32,7 +33,14 @@
                 showheatpoint: true,
                 heatpoint: [
                 ],
+
                 currentRain: 0,
+                currentRainTimes: 0,
+                rainSwitch: null,
+
+                points: [
+
+                ]
             }
         },
         mounted() {
@@ -46,6 +54,7 @@
             },
             initPoints() {
                 if (!this.map) return false
+                this.currentRainTimes = 0
                 let radius = parseInt(this.$route.query.radius, 10)
                 let wslice = parseInt(this.$route.query.wslice, 10)
                 let hslice = parseInt(this.$route.query.hslice, 10)
@@ -90,11 +99,24 @@
                     vue.currentRain = rain
                 })
                 EventBus.$on("start_analyse", function () {
-                    setInterval(function () {
+                    vue.rainSwitch = setInterval(function () {
+                        vue.currentRainTimes++
+                        window.console.log(vue.currentRainTimes)
                         for (let heatpointkey in vue.heatpoint) {
                             vue.heatpoint[heatpointkey].count -=  (vue.currentRain / 100)
                         }
                     }, 300)
+                })
+                EventBus.$on("stop_analyse", function () {
+                    clearInterval(vue.rainSwitch)
+                })
+                EventBus.$on("show_point", function (pos) {
+                    // 聚焦
+                    vue.center.lng = pos.lng
+                    vue.center.lat = pos.lat
+                    vue.zoom = 18
+                    // 显示点
+                    vue.points.push(pos)
                 })
             }
         },
