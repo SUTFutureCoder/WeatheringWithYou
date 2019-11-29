@@ -5,33 +5,27 @@
             <mu-container>
                 <mu-flex justify-content="center">
                     <mu-button id="controller-preset" @click="openBottomSheetRoute" color="primary">圣地巡礼</mu-button>
+                    <mu-button id="controller-slice" @click="openSliceBottomSheet" color="primary">控制</mu-button>
                     <mu-button @click="openBottomSheet" color="primary">预测</mu-button>
                 </mu-flex>
                 <mu-bottom-sheet :open.sync="openRoute" :overlay="false">
                     <mu-sub-header>预置位置</mu-sub-header>
-                    <mu-button class="choose-pos-button" color="primary" @click="choosePoint(positionRoute.代々木会館)">代々木会館</mu-button>
-                    <mu-button class="choose-pos-button" color="primary" @click="choosePoint(positionRoute.気象神社)">気象神社</mu-button>
-                    <mu-button class="choose-pos-button" color="primary" @click="choosePoint(positionRoute.渋谷駅前スクランブル交差点)">渋谷駅前スクランブル交差点</mu-button>
-                    <mu-button class="choose-pos-button" color="primary" @click="choosePoint(positionRoute.お台場海浜公園展望デッキ)">お台場海浜公園展望デッキ</mu-button>
-                    <mu-button class="choose-pos-button" color="primary" @click="choosePoint(positionRoute.のぞき坂)">のぞき坂</mu-button>
-                    <mu-button class="choose-pos-button" color="primary" @click="choosePoint(positionRoute.田端駅)">田端駅</mu-button>
-                    <mu-button class="choose-pos-button" color="primary" @click="choosePoint(positionRoute.六本木ヒルズスカイデッキ)">六本木ヒルズスカイデッキ</mu-button>
-                    <mu-button class="choose-pos-button" color="primary" @click="choosePoint(positionRoute.新宿アタミビル)">新宿アタミビル</mu-button>
-                    <mu-button class="choose-pos-button" color="primary" @click="choosePoint(positionRoute.天下一品歌舞伎町店)">天下一品歌舞伎町店</mu-button>
-                    <mu-button class="choose-pos-button" color="primary" @click="choosePoint(positionRoute.We_Road)">We_Road</mu-button>
-                    <mu-button class="choose-pos-button" color="primary" @click="choosePoint(positionRoute.はるか展望台)">はるか展望台</mu-button>
-                    <mu-button class="choose-pos-button" color="primary" @click="choosePoint(positionRoute.朝日稻荷神社)">朝日稻荷神社</mu-button>
-                    <mu-button class="choose-pos-button" color="primary" @click="choosePoint(positionRoute.新宿築地町店711)">新宿築地町店711</mu-button>
-                    <mu-button class="choose-pos-button" color="primary" @click="choosePoint(positionRoute.マクドナルド西武新宿駅前店)">マクドナルド西武新宿駅前店</mu-button>
-                    <mu-button class="choose-pos-button" color="primary" @click="choosePoint(positionRoute.JR東京総合病院)">JR東京総合病院</mu-button>
-                    <mu-button class="choose-pos-button" color="primary" @click="choosePoint(positionRoute.新宿大ガード西)">新宿大ガード西</mu-button>
-                    <mu-sub-header>预置路线</mu-sub-header>
+                        <mu-button class="choose-pos-button" color="primary" v-for="(pos, index) in positionRoute" :key="pos.key" @click="choosePoint(index)">{{index}}</mu-button>
                 </mu-bottom-sheet>
                 <mu-bottom-sheet :open.sync="openAnalyse" :overlay="false">
                     <mu-sub-header>相对降雨量(mm/h)</mu-sub-header>
                     <mu-slider @change="changeRainSlider" id="rain-slider" v-model="rain" :max="200" :step="1"></mu-slider>
                     <mu-button v-if="!rainSwitch" full-width color="primary" :ripple="true" @click="startAnalyse">开始预测</mu-button>
                     <mu-button v-if="rainSwitch" full-width color="secondary" :ripple="true" @click="stopAnalyse">停止预测</mu-button>
+                </mu-bottom-sheet>
+                <mu-bottom-sheet id="slice-bottom-sheet" :open.sync="openSlice" :overlay="false">
+                    <mu-sub-header>数据分块控制</mu-sub-header>
+                    <mu-alert color="error">
+                        <mu-icon left value="warning"></mu-icon> 前端将渲染横向 * 纵向 * 500个点，请根据设备处理能力设置
+                    </mu-alert>
+                    <mu-text-field v-model="wslice" placeholder="横向分块数"></mu-text-field><br/>
+                    <mu-text-field v-model="hslice" placeholder="纵向分块数"></mu-text-field><br/>
+                    <mu-button full-width color="primary" :ripple="true" @click="changeSlice">修改分块</mu-button>
                 </mu-bottom-sheet>
             </mu-container>
         </div>
@@ -45,11 +39,14 @@
         data() {
             return {
                 openAnalyse: false,
+                openSlice: false,
                 openRoute: false,
                 rain: 0,
                 rainSwitch: false,
                 positionRoute: PositionRoute.position,
                 timeshow: "",
+                wslice: 10,
+                hslice: 5,
             }
         },
         methods: {
@@ -77,8 +74,15 @@
             openBottomSheetRoute() {
                 this.openRoute = true
             },
-            choosePoint(pos) {
-                EventBus.$emit("show_point", pos)
+            choosePoint(posindex) {
+                EventBus.$emit("show_point", this.positionRoute[posindex], posindex)
+            },
+            openSliceBottomSheet() {
+                this.openSlice = true
+            },
+            changeSlice() {
+                EventBus.$emit("change_slice", this.wslice, this.hslice)
+                this.openSlice = false
             },
         }
 
@@ -92,7 +96,14 @@
     }
     .controller-buttonset #controller-preset {
         position: absolute;
+        bottom: 120px;
+    }
+    .controller-buttonset #controller-slice {
+        position: absolute;
         bottom: 60px;
+    }
+    #slice-bottom-sheet .mu-input {
+        padding-left: 20px;
     }
     .mu-slider {
         width: 90%;
@@ -100,6 +111,7 @@
     }
     .choose-pos-button {
         margin-left: 20px;
+        margin-top: 5px;
     }
     #controller-time {
         position: absolute;
