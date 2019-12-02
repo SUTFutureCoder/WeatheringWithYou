@@ -21,7 +21,7 @@
                 <mu-bottom-sheet id="slice-bottom-sheet" :open.sync="openSlice" :overlay="false">
                     <mu-sub-header>数据分块控制</mu-sub-header>
                     <mu-alert color="error">
-                        <mu-icon left value="warning"></mu-icon> 前端将渲染横向 * 纵向 * 500个点，请根据设备处理能力设置
+                        <mu-icon left value="warning"></mu-icon> 前端将渲染横向 * 纵向 * 500个点，请根据设备处理能力设置，越高越精细
                     </mu-alert>
                     <mu-text-field v-model="wslice" placeholder="横向分块数"></mu-text-field><br/>
                     <mu-text-field v-model="hslice" placeholder="纵向分块数"></mu-text-field><br/>
@@ -45,8 +45,8 @@
                 rainSwitch: false,
                 positionRoute: PositionRoute.position,
                 timeshow: "",
-                wslice: 10,
-                hslice: 5,
+                wslice: 20,
+                hslice: 10,
             }
         },
         methods: {
