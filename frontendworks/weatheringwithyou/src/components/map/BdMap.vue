@@ -10,6 +10,7 @@
                     @click="mapclick"
         >
             <bm-point-collection :points="points" size="BMAP_POINT_SIZE_BIG" color="red"></bm-point-collection>
+            <bm-point-collection :points="drainpoints" size="BMAP_POINT_SIZE_BIG" color="green"></bm-point-collection>
             <bml-heatmap :data="heatpoint" :max="100" :radius="radius">
             </bml-heatmap>
             <bm-marker :position="markerPoint" :dragging="false" >
@@ -63,7 +64,8 @@
                 rainSwitch: null,
 
                 points: [
-
+                ],
+                drainpoints: [
                 ],
                 piclist: [
                 ],
@@ -92,7 +94,7 @@
                 }
 
                 axios
-                    .post('https://weatheringwithyou.project256.com/analyse/', {
+                    .post('http://127.0.0.1:17565/analyse', {
                         sw_lng: this.map.getBounds().getSouthWest().lng,
                         sw_lat: this.map.getBounds().getSouthWest().lat,
                         ne_lng: this.map.getBounds().getNorthEast().lng,
@@ -152,6 +154,21 @@
                     // 聚焦
                     vue.wslice = wslice
                     vue.hslice = hslice
+                })
+                EventBus.$on("showdrainpoint", function () {
+                    axios
+                        .post('http://127.0.0.1:17565/getdrain', {
+                        })
+                        .then(function (response) {
+                            vue.drainpoints = []
+                            for ( let i in response.data.result) {
+                                vue.drainpoints.push({
+                                    lat: response.data.result[i].Lat,
+                                    lng: response.data.result[i].Lng,
+                                })
+                            }
+                        })
+                        .catch(error => window.console.log(error))
                 })
             },
             calcCurrentAltitude: function () {

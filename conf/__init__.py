@@ -8,8 +8,9 @@ class Conf:
 
   googleMapElevationApi = "https://maps.googleapis.com/maps/api/elevation/json?locations={},{}&key={}"
   googleMapTileCheckApi = "https://maps.googleapis.com/maps/api/geocode/json?latlng={},{}&key={}"
-  opensearchAppId = "WatheringWithYou_Tokyo"
-  opensearchAPI = "http://intranet.opensearch-cn-qingdao.aliyuncs.com"
+  # opensearchAppId = "WatheringWithYou_Tokyo"
+  opensearchAppId = "WatheringWithYou_Tokyo_Drain"
+  opensearchAPI = "http://opensearch-cn-qingdao.aliyuncs.com"
   opensearchTable = "elevation"
 
   cyberJapanDataDem5aAPI = "https://cyberjapandata.gsi.go.jp/xyz/dem5a/15/{}/{}.txt"

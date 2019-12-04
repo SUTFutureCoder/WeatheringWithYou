@@ -16,3 +16,8 @@ class Main:
         obj_thread = multi_thread(x, tile_list)
         obj_thread.start()
     return
+
+  def RunDrain(self):
+    obj_thread = multi_thread(0, [])
+    obj_thread.RunDrain()
+    return

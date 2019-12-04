@@ -33,3 +33,15 @@ class OpenSearch:
               "elevation": int(float(parsed_cyber_data[i][j]["elevation"]) * 100),
           })
     return parsed_items
+
+  def insertDrain(self, points):
+    for k in points:
+      data = points[k]
+      item = {
+        "id": str(data['lng']) + " " + str(data['lat']),
+        "loc": str(data['lng']) + " " + str(data['lat']),
+        "total": data['total'],
+        "name": data['name']
+      }
+      print(self.index_doc.add(item, self.obj_conf.opensearchTable))
+    return

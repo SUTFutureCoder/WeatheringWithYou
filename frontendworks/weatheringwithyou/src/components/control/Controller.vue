@@ -4,6 +4,7 @@
         <div class="controller-buttonset">
             <mu-container>
                 <mu-flex justify-content="center">
+                    <mu-button id="controller-drain" @click="showdrainpoint" color="primary">下水道関連施設データ</mu-button>
                     <mu-button id="controller-preset" @click="openBottomSheetRoute" color="primary">圣地巡礼</mu-button>
                     <mu-button id="controller-slice" @click="openSliceBottomSheet" color="primary">控制</mu-button>
                     <mu-button @click="openBottomSheet" color="primary">预测</mu-button>
@@ -84,6 +85,9 @@
                 EventBus.$emit("change_slice", this.wslice, this.hslice)
                 this.openSlice = false
             },
+            showdrainpoint() {
+                EventBus.$emit("showdrainpoint")
+            }
         }
 
     }

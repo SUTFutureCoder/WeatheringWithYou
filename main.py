@@ -4,4 +4,5 @@
 import main
 
 objRun = main.Main()
-objRun.Run()
+# objRun.Run()
+objRun.RunDrain()
