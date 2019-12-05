@@ -4,7 +4,7 @@
         <div class="controller-buttonset">
             <mu-container>
                 <mu-flex justify-content="center">
-                    <mu-button id="controller-drain" @click="showdrainpoint" color="primary">下水道関連施設データ</mu-button>
+                    <mu-button id="controller-drain" @click="showdrainpoint" color="primary">下水道関連施設</mu-button>
                     <mu-button id="controller-preset" @click="openBottomSheetRoute" color="primary">圣地巡礼</mu-button>
                     <mu-button id="controller-slice" @click="openSliceBottomSheet" color="primary">控制</mu-button>
                     <mu-button @click="openBottomSheet" color="primary">预测</mu-button>
@@ -96,7 +96,12 @@
     .controller-buttonset {
         position: absolute;
         bottom: 10px;
-        right: 0;
+        right: 20px;
+    }
+    .controller-buttonset #controller-drain {
+        position: absolute;
+        width: 130px;
+        bottom: 180px;
     }
     .controller-buttonset #controller-preset {
         position: absolute;
