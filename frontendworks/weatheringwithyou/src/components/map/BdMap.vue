@@ -42,6 +42,7 @@
     import {BmlHeatmap} from 'vue-baidu-map'
     import axios from 'axios'
     import EventBus from "../../assets/EventBus"
+    import Const from "../../constants/Const"
     export default {
         data() {
             return {
@@ -94,7 +95,7 @@
                 }
 
                 axios
-                    .post('http://127.0.0.1:17565/analyse', {
+                    .post(Const.BASE_URL + '/analyse', {
                         sw_lng: this.map.getBounds().getSouthWest().lng,
                         sw_lat: this.map.getBounds().getSouthWest().lat,
                         ne_lng: this.map.getBounds().getNorthEast().lng,
@@ -157,7 +158,7 @@
                 })
                 EventBus.$on("showdrainpoint", function () {
                     axios
-                        .post('http://127.0.0.1:17565/getdrain', {
+                        .post(Const.BASE_URL + '/getdrain', {
                         })
                         .then(function (response) {
                             vue.drainpoints = []
